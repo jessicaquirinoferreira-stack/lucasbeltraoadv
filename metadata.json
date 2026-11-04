@@ -1,0 +1,6 @@
+{
+  "name": "Beltrão Advocacia - Lucas Beltrão da Silveira",
+  "description": "Site institucional de alta conversão do advogado Lucas Beltrão da Silveira. Atendimento jurídico digital especializado em Direito Previdenciário, Consumidor e Direito Digital.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
