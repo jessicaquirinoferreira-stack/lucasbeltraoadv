@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import { 
   ShieldCheck, 
   Scale, 
@@ -16,6 +17,7 @@ import {
   ChevronRight
 } from 'lucide-react';
 import { PRACTICE_AREAS, WHATSAPP_LINKS } from '../constants';
+import { CardSpotlight } from './ui/CardSpotlight';
 
 export default function PracticeAreas() {
   const [activeTab, setActiveTab] = useState<string>('all');
@@ -151,8 +153,10 @@ export default function PracticeAreas() {
                   {area.subCategories.map((sub, sIdx) => {
                     const SubIcon = getSubCategoryIcon(sub.title);
                     return (
-                      <div
+                      <CardSpotlight
                         key={sIdx}
+                        radius={260}
+                        color="rgba(201, 162, 39, 0.14)"
                         className="rounded-2xl p-6 sm:p-7 bg-[#080E1A]/85 border border-slate-800 hover:border-[#C9A227]/35 transition-all duration-300 flex flex-col justify-between group shadow-lg"
                       >
                         <div>
@@ -196,7 +200,7 @@ export default function PracticeAreas() {
                             <ChevronRight className="w-3.5 h-3.5" />
                           </a>
                         </div>
-                      </div>
+                      </CardSpotlight>
                     );
                   })}
                 </div>

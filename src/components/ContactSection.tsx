@@ -1,6 +1,10 @@
 import { useState } from 'react';
+import { motion } from 'motion/react';
 import { MessageCircle, Phone, Clock, ShieldCheck, Send, Check } from 'lucide-react';
 import { PHONE_DISPLAY, PHONE_RAW, WHATSAPP_LINKS, LAWYER_NAME } from '../constants';
+import { BorderBeam } from './ui/BorderBeam';
+import { ShimmerButton } from './ui/ShimmerButton';
+import { Particles } from './ui/Particles';
 
 export default function ContactSection() {
   const [selectedCase, setSelectedCase] = useState<string>('Previdenciário (INSS / Aposentadoria)');
@@ -27,13 +31,24 @@ export default function ContactSection() {
 
   return (
     <section id="contato" className="py-24 relative overflow-hidden bg-gradient-to-b from-[#070B12] via-[#0A111E] to-[#070B12]">
+      {/* Background Particles */}
+      <Particles className="absolute inset-0" quantity={25} color="#D4AF37" />
+
       {/* Background radial highlight */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[45rem] h-[30rem] bg-[#C9A227]/10 rounded-full blur-[140px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main CTA Container */}
-        <div className="rounded-3xl border border-[#C9A227]/30 bg-gradient-to-b from-[#0E1A2C] via-[#0A1322] to-[#070B12] p-8 sm:p-14 shadow-2xl relative overflow-hidden">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.98 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7 }}
+          className="rounded-3xl border border-[#C9A227]/30 bg-gradient-to-b from-[#0E1A2C] via-[#0A1322] to-[#070B12] p-8 sm:p-14 shadow-2xl relative overflow-hidden"
+        >
+          {/* Magic UI Border Beam */}
+          <BorderBeam size={320} duration={12} colorFrom="#D4AF37" colorTo="#F3E29F" />
           
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             
@@ -75,17 +90,19 @@ export default function ContactSection() {
                 </p>
               </div>
 
-              {/* Big Golden Primary WhatsApp Button */}
+              {/* Big Golden Primary WhatsApp Button with Shimmer */}
               <div>
-                <a
+                <ShimmerButton
                   href={WHATSAPP_LINKS.default}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group inline-flex items-center justify-center gap-3 w-full sm:w-auto px-8 py-4 text-base font-bold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-[#D4AF37] via-[#F0D575] to-[#C9A227] rounded-xl hover:shadow-[0_0_35px_rgba(201,162,39,0.5)] hover:brightness-105 transition-all duration-300 active:scale-95"
+                  shimmerColor="#FFFFFF"
+                  shimmerDuration="2.5s"
+                  className="py-4 px-8 text-base font-bold tracking-wider w-full sm:w-auto"
                 >
-                  <MessageCircle className="w-5 h-5 fill-slate-950 transition-transform group-hover:scale-110" />
+                  <MessageCircle className="w-5 h-5 fill-slate-950" />
                   <span>Chamar no WhatsApp</span>
-                </a>
+                </ShimmerButton>
               </div>
 
               <div className="flex items-center gap-6 text-xs text-slate-400 pt-2">
@@ -164,7 +181,7 @@ export default function ContactSection() {
 
           </div>
 
-        </div>
+        </motion.div>
 
       </div>
     </section>

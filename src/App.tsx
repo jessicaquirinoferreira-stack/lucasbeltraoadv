@@ -13,10 +13,14 @@ import ContactSection from './components/ContactSection';
 import Footer from './components/Footer';
 import FloatingWhatsApp from './components/FloatingWhatsApp';
 import VirtualAssistant from './components/VirtualAssistant';
+import { ScrollProgress } from './components/ui/ScrollProgress';
 
 export default function App() {
   return (
     <div className="min-h-screen bg-[#070B12] text-slate-100 flex flex-col font-sans selection:bg-[#C9A227]/30 selection:text-amber-200">
+      {/* Magic UI Scroll Progress Indicator */}
+      <ScrollProgress />
+
       {/* Top Header */}
       <Header />
 

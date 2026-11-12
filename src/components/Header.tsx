@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { MessageCircle, Menu, X, ArrowUpRight } from 'lucide-react';
 import { OFFICIAL_LOGO_URL, WHATSAPP_LINKS } from '../constants';
+import { ShimmerButton } from './ui/ShimmerButton';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -61,16 +62,18 @@ export default function Header() {
 
           {/* Header Action Button */}
           <div className="hidden sm:flex items-center gap-3">
-            <a
+            <ShimmerButton
               href={WHATSAPP_LINKS.default}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-[#D4AF37] via-[#E5C358] to-[#C9A227] rounded-lg hover:brightness-110 transition-all duration-300 shadow-[0_4px_16px_rgba(201,162,39,0.35)] active:scale-95"
+              shimmerColor="#FFFFFF"
+              shimmerDuration="3s"
+              className="px-4 py-2 text-xs font-semibold uppercase tracking-wider"
             >
               <MessageCircle className="w-4 h-4 fill-slate-950" />
               <span>Falar no WhatsApp</span>
-              <ArrowUpRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </a>
+              <ArrowUpRight className="w-3.5 h-3.5" />
+            </ShimmerButton>
           </div>
 
           {/* Mobile menu button */}

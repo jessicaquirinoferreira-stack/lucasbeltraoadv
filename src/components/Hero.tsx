@@ -1,6 +1,11 @@
-import { MessageCircle, ChevronDown, CheckCircle2, Shield, Sparkles, Scale, Clock, Globe } from 'lucide-react';
+import { MessageCircle, ChevronDown, CheckCircle2, Shield, Sparkles, Scale, Globe } from 'lucide-react';
+import { motion } from 'motion/react';
 import { WHATSAPP_LINKS, LAWYER_NAME, OFFICIAL_LOGO_URL } from '../constants';
 import heroDarkLawOffice from '../assets/images/hero_dark_law_office_1793756000843.jpg';
+import { Spotlight } from './ui/Spotlight';
+import { Particles } from './ui/Particles';
+import { BorderBeam } from './ui/BorderBeam';
+import { ShimmerButton } from './ui/ShimmerButton';
 
 export default function Hero() {
   const trustPoints = [
@@ -23,6 +28,12 @@ export default function Hero() {
 
   return (
     <section id="inicio" className="relative min-h-[92vh] flex items-center pt-32 sm:pt-36 pb-16 overflow-hidden">
+      {/* Aceternity UI Spotlight Effect */}
+      <Spotlight className="-top-40 left-0 md:left-60 md:-top-20" fill="#D4AF37" />
+
+      {/* Magic UI Dynamic Particles */}
+      <Particles className="absolute inset-0" quantity={40} color="#D4AF37" />
+
       {/* Background with luxury law office backdrop and measured dark scrims */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <img
@@ -38,15 +49,20 @@ export default function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#C9A227_1px,transparent_1px),linear-gradient(to_bottom,#C9A227_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_35%,#000_70%,transparent_100%)] opacity-[0.03]" />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Core Value Proposition & CTAs (7 cols) */}
-          <div className="lg:col-span-7 space-y-7 text-left">
+          <motion.div 
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-7 space-y-7 text-left"
+          >
             
-            {/* Subtle Eyebrow / Trust kicker */}
+            {/* Subtle Eyebrow / Trust kicker with animated glow */}
             <div className="inline-flex items-center gap-2.5 px-3.5 py-1.5 rounded-full bg-[#121E33]/90 border border-[#C9A227]/30 backdrop-blur-md shadow-sm">
-              <Sparkles className="w-4 h-4 text-[#D4AF37]" />
+              <Sparkles className="w-4 h-4 text-[#D4AF37] animate-pulse" />
               <span className="text-xs font-semibold tracking-wider text-amber-200 uppercase">
                 Advocacia Especializada &amp; 100% Online
               </span>
@@ -70,19 +86,21 @@ export default function Hero() {
 
             {/* Action Buttons */}
             <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4 pt-2">
-              <a
+              <ShimmerButton
                 href={WHATSAPP_LINKS.default}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group inline-flex items-center justify-center gap-3 px-7 py-4 text-sm font-bold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-[#D4AF37] via-[#F0D575] to-[#C9A227] rounded-xl hover:shadow-[0_0_30px_rgba(201,162,39,0.45)] hover:brightness-105 transition-all duration-300 active:scale-[0.98]"
+                shimmerColor="#FFFFFF"
+                shimmerDuration="2.5s"
+                className="py-4 px-7 text-sm font-bold tracking-wider"
               >
-                <MessageCircle className="w-5 h-5 fill-slate-950 transition-transform group-hover:scale-110" />
+                <MessageCircle className="w-5 h-5 fill-slate-950" />
                 <span>Falar com o Advogado</span>
-              </a>
+              </ShimmerButton>
 
               <a
                 href="#areas"
-                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold text-slate-200 hover:text-white bg-slate-900/80 hover:bg-slate-800/90 border border-slate-700/80 hover:border-[#C9A227]/50 rounded-xl transition-all duration-300 backdrop-blur-sm"
+                className="inline-flex items-center justify-center gap-2 px-6 py-4 text-sm font-semibold text-slate-200 hover:text-white bg-slate-900/80 hover:bg-slate-800/90 border border-slate-700/80 hover:border-[#C9A227]/50 rounded-xl transition-all duration-300 backdrop-blur-sm hover:scale-[1.02]"
               >
                 <span>Conhecer as Áreas de Atuação</span>
                 <ChevronDown className="w-4 h-4 text-[#D4AF37]" />
@@ -105,16 +123,23 @@ export default function Hero() {
               </span>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Visual Anchor & Official Identity Card (5 cols) */}
-          <div className="lg:col-span-5 flex justify-center">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-5 flex justify-center"
+          >
             <div className="relative w-full max-w-md">
               {/* Golden Ambient Blur behind card */}
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-r from-[#C9A227]/30 via-[#E5C358]/20 to-[#C9A227]/30 blur-xl opacity-60 animate-pulse-cta" />
 
-              <div className="relative glass-panel rounded-2xl p-6 sm:p-8 border border-[#C9A227]/30 bg-gradient-to-b from-[#0F1B2E]/95 via-[#0A1220]/95 to-[#070B12]/95 text-center shadow-2xl">
-                
+              <div className="relative glass-panel rounded-2xl p-6 sm:p-8 border border-[#C9A227]/30 bg-gradient-to-b from-[#0F1B2E]/95 via-[#0A1220]/95 to-[#070B12]/95 text-center shadow-2xl overflow-hidden">
+                {/* Magic UI Border Beam */}
+                <BorderBeam size={180} duration={9} colorFrom="#D4AF37" colorTo="#F3E29F" />
+
                 {/* Official Logo Spotlight */}
                 <div className="flex justify-center mb-6">
                   <div className="p-4 rounded-2xl bg-[#070B12]/80 border border-[#C9A227]/25 shadow-inner">
@@ -166,7 +191,7 @@ export default function Hero() {
 
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

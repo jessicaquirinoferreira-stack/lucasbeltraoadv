@@ -1,5 +1,8 @@
 import { MessageCircle, Award, BookOpen, ShieldCheck, CheckCircle2, UserCheck } from 'lucide-react';
+import { motion } from 'motion/react';
 import { LAWYER_NAME, WHATSAPP_LINKS, OFFICIAL_LOGO_URL } from '../constants';
+import { BorderBeam } from './ui/BorderBeam';
+import { CardSpotlight } from './ui/CardSpotlight';
 
 export default function About() {
   const credentials = [
@@ -34,7 +37,13 @@ export default function About() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="max-w-3xl mb-16">
+        <motion.div 
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="max-w-3xl mb-16"
+        >
           <div className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-widest text-[#D4AF37] mb-3">
             <span className="w-6 h-[1.5px] bg-[#D4AF37]" />
             Apresentação Profissional
@@ -42,12 +51,18 @@ export default function About() {
           <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight">
             Quem sou eu?
           </h2>
-        </div>
+        </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           
           {/* Left Column: Official Profile Text & Narrative (7 cols) */}
-          <div className="lg:col-span-7 space-y-6">
+          <motion.div 
+            initial={{ opacity: 0, x: -25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-7 space-y-6"
+          >
             
             <div className="p-7 sm:p-8 rounded-2xl bg-[#0F1A2D]/70 border border-[#C9A227]/20 shadow-xl relative">
               <div className="space-y-5 text-base sm:text-lg text-slate-200 leading-relaxed font-light">
@@ -80,14 +95,16 @@ export default function About() {
               </div>
             </div>
 
-            {/* Credential Grid */}
+            {/* Credential Grid with CardSpotlight */}
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {credentials.map((item, idx) => {
                 const Icon = item.icon;
                 return (
-                  <div
+                  <CardSpotlight
                     key={idx}
-                    className="p-4 rounded-xl bg-slate-900/40 border border-slate-800 hover:border-[#C9A227]/30 transition-colors"
+                    radius={220}
+                    color="rgba(201, 162, 39, 0.12)"
+                    className="p-4 rounded-xl bg-slate-900/50 border-slate-800"
                   >
                     <div className="flex items-center gap-3 mb-2">
                       <div className="p-2 rounded-lg bg-[#C9A227]/10 text-[#D4AF37]">
@@ -100,7 +117,7 @@ export default function About() {
                     <p className="text-xs text-slate-400 leading-normal">
                       {item.description}
                     </p>
-                  </div>
+                  </CardSpotlight>
                 );
               })}
             </div>
@@ -111,30 +128,38 @@ export default function About() {
                 href={WHATSAPP_LINKS.default}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2.5 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-[#D4AF37] to-[#C9A227] rounded-xl hover:brightness-110 transition-all duration-200 shadow-md active:scale-95"
+                className="inline-flex items-center gap-2.5 px-6 py-3.5 text-xs font-bold uppercase tracking-wider text-slate-950 bg-gradient-to-r from-[#D4AF37] to-[#C9A227] rounded-xl hover:brightness-110 transition-all duration-200 shadow-md active:scale-95 hover:scale-[1.02]"
               >
                 <MessageCircle className="w-4 h-4 fill-slate-950" />
                 <span>Falar comigo</span>
               </a>
             </div>
 
-          </div>
+          </motion.div>
 
           {/* Right Column: Visual Card with Office Imagery and Official Emblem (5 cols) */}
-          <div className="lg:col-span-5">
+          <motion.div 
+            initial={{ opacity: 0, x: 25 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.7 }}
+            className="lg:col-span-5"
+          >
             <div className="relative group">
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-tr from-[#C9A227]/20 via-transparent to-[#D4AF37]/20 blur-lg opacity-50 group-hover:opacity-80 transition duration-500" />
               
               <div className="relative rounded-2xl overflow-hidden border border-[#C9A227]/30 bg-[#0A1220] shadow-2xl">
+                {/* Magic UI Border Beam on Lawyer Card */}
+                <BorderBeam size={220} duration={12} colorFrom="#D4AF37" colorTo="#F3E29F" />
+
                 {/* Visual Image - Retrato Profissional */}
-                <div className="relative w-full aspect-[4/5] sm:aspect-[3/4] max-h-[460px] overflow-hidden bg-[#070B12] flex items-center justify-center">
+                <div className="relative w-full overflow-hidden bg-[#070B12] flex items-center justify-center border-b border-slate-800/80">
                   <img
-                    src="https://i.postimg.cc/Wz5jDjpG/Retrato-profissional-no-escritorio-de-advocacia.png"
-                    alt="Dr. Lucas Beltrão da Silveira no escritório de advocacia"
-                    className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-[1.02]"
+                    src="https://i.postimg.cc/mrJ7J7t8/Gemini-Generated-Image-izmkr1izmkr1izmk-jpg.jpg"
+                    alt="Dr. Lucas Beltrão da Silveira"
+                    className="w-full h-auto max-h-[580px] object-contain block transition-transform duration-500 group-hover:scale-[1.01]"
                     referrerPolicy="no-referrer"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#0A1220] via-transparent to-transparent opacity-80 pointer-events-none" />
                   
                   {/* Floating badge inside image */}
                   <div className="absolute top-4 right-4 px-3 py-1.5 rounded-lg bg-[#070B12]/85 backdrop-blur-md border border-[#C9A227]/40 text-[11px] font-semibold text-amber-300 shadow-md">
@@ -183,7 +208,7 @@ export default function About() {
 
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
 
